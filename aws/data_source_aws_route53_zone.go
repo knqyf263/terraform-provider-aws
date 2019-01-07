@@ -92,7 +92,7 @@ func dataSourceAwsRoute53ZoneRead(d *schema.ResourceData, meta interface{}) erro
 		}
 		for _, hostedZone := range resp.HostedZones {
 			hostedZoneId := cleanZoneID(*hostedZone.Id)
-			if idExists && hostedZoneId == id.(string) {
+			if idExists && hostedZoneId == cleanZoneID(id.(string)) {
 				hostedZoneFound = hostedZone
 				break
 				// we check if the name is the same as requested and if private zone field is the same as requested or if there is a vpc_id
